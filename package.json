@@ -1,0 +1,22 @@
+{
+  "name": "monaco-loader",
+  "version": "0.7.0",
+  "description": "Monaco code editor, loaded and ready to use.",
+  "main": "index.js",
+  "dependencies": {
+    "monaco-editor": "^0.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felixrieseberg/monaco-loader.git"
+  },
+  "keywords": [
+    "Monaco"
+  ],
+  "author": "Felix Rieseberg <felix@felixrieseberg.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/felixrieseberg/monaco-loader/issues"
+  },
+  "homepage": "https://github.com/felixrieseberg/monaco-loader#readme"
+}
