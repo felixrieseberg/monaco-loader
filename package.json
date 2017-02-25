@@ -1,6 +1,6 @@
 {
   "name": "monaco-loader",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Monaco code editor, loaded and ready to use.",
   "main": "index.js",
   "dependencies": {
