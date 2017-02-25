@@ -65,7 +65,7 @@ function loadMonaco (options = {}) {
       }
 
       // Configure options
-      options.baseUrl = options.baseUrl || encodeURI(`file://${monacoDir}/min`)
+      options.baseUrl = options.baseUrl || `file:///${monacoDir}/min`
 
       loader.require.config({
         baseUrl: options.baseUrl
