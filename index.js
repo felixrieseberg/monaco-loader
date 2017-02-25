@@ -41,9 +41,12 @@ function findMonaco () {
  * @returns {Promise<boolean>} True if found, false if not
  */
 function testMonaco (dir = '') {
-  return new Promise((resolve, reject) => {
-    fs.readdir(dir, (err) => resolve(!!err))
-  })
+  try {
+    const res = fs.readdirSync(dir);
+    return !!res;
+  } catch (e) {
+    return false;
+  }
 }
 
 /**
