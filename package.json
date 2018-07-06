@@ -1,10 +1,10 @@
 {
   "name": "monaco-loader",
-  "version": "0.8.2",
+  "version": "0.13.0",
   "description": "Monaco code editor, loaded and ready to use.",
   "main": "index.js",
   "dependencies": {
-    "monaco-editor": "^0.8.0"
+    "monaco-editor": "^0.13.0"
   },
   "repository": {
     "type": "git",
