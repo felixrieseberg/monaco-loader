@@ -14,12 +14,14 @@ function findMonaco () {
     let paths = process.mainModule ? process.mainModule.paths : []
 
     // We'll look far and wide
-    paths.push(path.join(__dirname, 'node_modules'))
-    paths.push(path.join(__dirname, '..', 'node_modules'))
-    paths.push(path.join(__dirname, '..', '..', 'node_modules'))
-    paths.push(path.join(process.cwd(), 'node_modules'))
-    paths.push(path.join(process.cwd(), '..', 'node_modules'))
-    paths.push(path.join(process.cwd(), '..', '..', 'node_modules'))
+    if (paths.length === 0) {
+      paths.push(path.join(__dirname, 'node_modules'))
+      paths.push(path.join(__dirname, '..', 'node_modules'))
+      paths.push(path.join(__dirname, '..', '..', 'node_modules'))
+      paths.push(path.join(process.cwd(), 'node_modules'))
+      paths.push(path.join(process.cwd(), '..', 'node_modules'))
+      paths.push(path.join(process.cwd(), '..', '..', 'node_modules'))
+    }
 
     paths = paths.map((p) => path.join(p, 'monaco-editor'))
 
@@ -42,11 +44,26 @@ function findMonaco () {
  */
 function testMonaco (dir = '') {
   try {
-    const res = fs.readdirSync(dir);
-    return !!res;
+    return !!fs.existsSync(dir);
   } catch (e) {
     return false;
   }
+}
+
+/**
+ * Gets the correct path
+ *
+ * @param {*} _path
+ * @returns
+ */
+function uriFromPath(_path = '') {
+  let pathName = path.resolve(_path).replace(/\\/g, '/');
+
+  if (pathName.length > 0 && pathName.charAt(0) !== '/') {
+    pathName = '/' + pathName;
+  }
+
+  return encodeURI('file://' + pathName);
 }
 
 /**
@@ -68,7 +85,7 @@ function loadMonaco (options = {}) {
       }
 
       // Configure options
-      options.baseUrl = options.baseUrl || `file:///${monacoDir}/min`
+      options.baseUrl = uriFromPath(options.baseUrl || `${monacoDir}/min`)
 
       loader.require.config({
         baseUrl: options.baseUrl
